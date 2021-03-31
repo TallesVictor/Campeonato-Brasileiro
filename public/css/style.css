@@ -1,0 +1,29 @@
+.img-logo {
+    width: 35px;
+}
+
+.campeao {
+    background-color: #CCE5FF;
+}
+
+.libertadores {
+    background-color: #D1ECF1;
+}
+
+.copa-brasil {
+    background-color: #D4EDDA;
+}
+
+tr {
+    border-bottom: .125em #0000000f solid;
+}
+
+.preloader {
+    position: absolute;
+    z-index: 10;
+    background-color: #ffffff54;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
