@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TimesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::view('/', 'home');
+Route::get('/index', [TimesController::class, 'index']);
+Route::get('/show', [TimesController::class, 'show']);
+Route::post('/create', [TimesController::class, 'create']);
