@@ -12,7 +12,7 @@ class TimesSeeder extends Seeder
     static $times = array(
         'América-MG'  => 'img/America-MG.png',
         'Athletico-PR' => 'img/Athletico-PR.png',
-        'Atlético-GO' => 'img/atlético-go.png',
+        'Atlético-GO' => 'img/atletico-go.png',
         'Atlético-MG' => 'img/atletico-mg.png',
         'Bahia' => 'img/bahia.png',
         'Bragantino' => 'img/rb-bragantino.png',
@@ -40,7 +40,6 @@ class TimesSeeder extends Seeder
      */
     public function run()
     {
-        new Exception('Teste');
         foreach (self::$times as $chave => $valor) {
             DB::table('times')->insert([
                 'name' => $chave,
