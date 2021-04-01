@@ -5,6 +5,7 @@ $(document).ready(function() {
     tabelaBrasileiraoA();
     show();
     formConfronto();
+    formConfrontoMassa();
     $('.placar').mask('99');
 });
 
@@ -13,12 +14,12 @@ function tabelaBrasileiraoA() {
         type: "GET",
         url: "/index",
         success: function(data) {
-
             let html = "";
-
+            let jogos = 0;
             for (let i = 0; i < data.length; i++) {
                 let classe = "";
-                let rank = parseInt(data[i].RANK);
+                let status = "";
+                let rank = data[i].RANK;
                 let derrota = data[i].derrota;
                 let logo = data[i].logo;
                 let empate = data[i].empate;
@@ -26,18 +27,29 @@ function tabelaBrasileiraoA() {
                 let gols_pro = data[i].gols_pro;
                 let name = data[i].name;
                 let pontuacao = data[i].pontuacao;
-                let jogos = data[i].jogos;
+                jogos = parseInt(data[i].jogos);
                 let saldo_gols = data[i].saldo_gols;
                 let vitorias = data[i].vitorias;
-
+                // Verificar classificação para destacar posições
                 if (rank == 1)
                     classe = "campeao"
                 else if (rank >= 2 && rank <= 7)
                     classe = "libertadores"
                 else if (rank >= 8 && rank <= 14)
                     classe = "copa-brasil"
-                html += `<tr class="${classe}" >
-                            <td class="text-center"> v </td>
+                else if (rank >= 17 && rank <= 20)
+                    classe = "rebaixamento"
+
+                // Verificar se o time subiu, desceu ou manteve de posição
+                if (data[i].status > 0)
+                    status = '<i class="fas fa-chevron-up text-success"></i>'
+                else if (data[i].status < 0)
+                    status = '<i class="fas fa-chevron-down text-danger"></i>'
+                else
+                    status = '<i class="fas fa-minus text-secondary"></i>'
+
+                html += `<tr class="${classe}  flex-column justify-content-center align-items-center" >
+                            <td class="text-center"> ${status} </td>
                             <td class="text-left">
                                 ${rank}º&nbsp;
                                 <img src="${logo}" class="img-logo" alt="${name}">
@@ -53,6 +65,9 @@ function tabelaBrasileiraoA() {
                             <td>${saldo_gols}</td>
                         </tr>`;
 
+            }
+            if (jogos > 38) {
+                erro('ModalConfronto', 'O limite de partida já foi alcançado (38 partidas).');
             }
             $("#bodyBrasileiroA").html(html);
             hideLoading();
@@ -84,7 +99,6 @@ function formConfronto() {
 
     $("#formConfronto").submit(function(e) {
         e.preventDefault();
-        console.log(new FormData(this))
         $.ajax({
             type: "POST",
             url: "create",
@@ -92,14 +106,47 @@ function formConfronto() {
             processData: false,
             contentType: false,
             success: function(data) {
-                if (data == 'true') {
-                    $("#modalConfronto").modal("hide");
-                } else if (data == 'false') {
-                    erro('ModalConfronto', 'Erro ao salvar no Bando de Dados');
-                }
+                // if (data == 'true') {
+                $("#modalConfronto").modal("hide");
+                tabelaBrasileiraoA();
+                erro('ModalConfronto', null);
+                // } else {
+                //     erro('ModalConfronto', 'Erro ao salvar no Bando de Dados');
+                // }
             },
-            erro: function() {
-                erro('ModalConfronto', 'Erro ao salvar no Bando de Dados');
+            error: function(xhr) {
+                erro('ModalConfronto', xhr.responseText);
+            }
+        });
+
+    });
+}
+
+// Formulário para criar 15 rodadas de forma aleatória para teste
+function formConfrontoMassa() {
+
+    $("#formConfrontoMassa").submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "createBulk",
+            data: {
+                timeCasa: 0,
+                timeVisitante: 0,
+                placarCasa: 0,
+                placarVisitante: 0,
+            },
+            success: function(data) {
+                // if (data == 'true') {
+                $("#modalConfronto").modal("hide");
+                tabelaBrasileiraoA();
+                erro('ModalConfronto', null);
+                // } else if (data == 'false') {
+                //     erro('ModalConfronto', 'Erro ao salvar no Bando de Dados');
+                // }
+            },
+            error: function(xhr) {
+                erro('ModalConfronto', xhr.responseText);
             }
         });
 

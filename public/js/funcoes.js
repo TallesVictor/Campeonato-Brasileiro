@@ -10,11 +10,9 @@ function hideLoading() {
 
 function erro(modal, msg) {
     $("#aviso-" + modal).hide();
-    $("#submit-" + modal).prop("disabled", false);
     if (msg) {
         $("#mensagem-" + modal).html(msg);
         $("#aviso-" + modal).show();
-        $("#submit-" + modal).prop("disabled", true);
     }
 
 }
