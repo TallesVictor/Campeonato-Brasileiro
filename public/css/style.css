@@ -1,5 +1,6 @@
 .img-logo {
     width: 35px;
+    max-height: 80px;
 }
 
 .campeao {
@@ -14,6 +15,10 @@
     background-color: #D4EDDA;
 }
 
+.rebaixamento {
+    background-color: #F8D7DA;
+}
+
 tr {
     border-bottom: .125em #0000000f solid;
 }
@@ -21,9 +26,15 @@ tr {
 .preloader {
     position: absolute;
     z-index: 10;
-    background-color: #ffffff54;
+    background-color: #ffffff9f;
     overflow: hidden;
     position: fixed;
     top: 0;
     left: 0;
+}
+
+td {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle!important;
 }
