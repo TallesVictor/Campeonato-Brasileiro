@@ -9,6 +9,18 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            {{-- Preenchimento em massa --}}
+            <form method="POST" id="formConfrontoMassa">
+                <div class="container pt-4">
+                    <div class="row">
+                        <div class="col-sm">
+                            <button class="btn btn-primary w-100" type="submit">Preencher até 400 partidas</button>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </form>
+
             <form method="POST" id="formConfronto">
                 <div class="modal-body container">
                     {{-- Mensagem de aviso --}}
@@ -42,8 +54,8 @@
                         </div>
                         <div class="col-sm">
                             <label>Visitante</label>
-                            <select class="form-control" id="selectVisitante-ModalConfronto"  name="timeVisitante" onchange="compararTimes()"
-                                required>
+                            <select class="form-control" id="selectVisitante-ModalConfronto" name="timeVisitante"
+                                onchange="compararTimes()" required>
                             </select>
                         </div>
                     </div>
