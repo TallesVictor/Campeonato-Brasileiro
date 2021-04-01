@@ -26,14 +26,14 @@
                     <table class="table table-hover" id="tabelaBrasileiraoA">
                         <thead>
                             <tr>
-                                <th colspan="2">Posição</th>
-                                <th class="">PTS</th>
-                                <th class="">J</th>
-                                <th class="">V</th>
-                                <th class="">E</th>
-                                <th class="">D</th>
-                                <th class="">GP</th>
-                                <th class="">GC</th>
+                                <th colspan="2">Posição </th>
+                                <th class="text-center">PTS</th>
+                                <th class="text-center">J</th>
+                                <th class="text-center">V</th>
+                                <th class="text-center">E</th>
+                                <th class="text-center">D</th>
+                                <th class="text-center">GP</th>
+                                <th class="text-center">GC</th>
                                 <th class="">SG</th>
                             </tr>
                         </thead>
