@@ -7,79 +7,26 @@ use Illuminate\Http\Request;
 
 class RodadasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    /** Criar rodadas */
+    public function create(Request $request)
     {
-        //
+        $rodadas = new Rodadas();
+
+        return $rodadas->create($request);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function createBulk(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Rodadas  $rodadas
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Rodadas $rodadas)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Rodadas  $rodadas
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Rodadas $rodadas)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Rodadas  $rodadas
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Rodadas $rodadas)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Rodadas  $rodadas
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Rodadas $rodadas)
-    {
-        //
+        $rodadas = new Rodadas();
+        for ($i = 0; $i < 400; $i++) {
+            $request->timeCasa = rand(1, 10);
+            $request->timeVisitante = rand(11, 20);
+            $request->placarCasa = rand(0, 5);
+            $request->placarVisitante = rand(0, 5);
+            if($rodadas->create($request) != 'true'){
+                return $rodadas->create($request);
+            }
+        }
+        return 'true';
     }
 }

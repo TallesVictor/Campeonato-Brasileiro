@@ -8,20 +8,20 @@ use Illuminate\Http\Request;
 class TimesController extends Controller
 {
   
-    public function index()
-    {
-        $times = new Times();
-
-        return response()->json($times->index());
-    }
 
     public function show(){
         $times = new Times();
         return $times->show();
     }
 
-    public function create(Request $request){
+    public function search($id){
         $times = new Times();
-        return $times->create($request);
+        return $times->search($id);
     }
+
+    public function change(Times $times){
+        return $times->change($times);
+    }
+
+
 }
