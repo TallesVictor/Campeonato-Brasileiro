@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PosicaoTimeController;
+use App\Http\Controllers\RodadasController;
 use App\Http\Controllers\TimesController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,7 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+#  VIEW
 Route::view('/', 'home');
-Route::get('/index', [TimesController::class, 'index']);
+
+#  TIMES
+// Route::get('/index', [TimesController::class, 'index']);
+Route::get('/index', [PosicaoTimeController::class, 'list']);
 Route::get('/show', [TimesController::class, 'show']);
-Route::post('/create', [TimesController::class, 'create']);
+
+#  RODADAS
+Route::post('/create', [RodadasController::class, 'create']);
+Route::post('/createBulk', [RodadasController::class, 'createBulk']);
