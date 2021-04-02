@@ -9,26 +9,30 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            {{-- Preenchimento em massa --}}
-            <form method="POST" id="formConfrontoMassa">
-                <div class="container pt-4">
-                    <div class="row">
-                        <div class="col-sm">
-                            <button class="btn btn-primary w-100" type="submit">Preencher até 400 partidas</button>
-                        </div>
+
+            {{-- Mensagem de aviso --}}
+            <div class="modal-body container pb-0">
+                <div class="row" id="aviso-ModalConfronto" style="display:none">
+                    <div class="alert alert-danger p-2 text-center w-100 shadow" role="alert">
+                        <label class="m-0" id="mensagem-ModalConfronto"></label>
                     </div>
                 </div>
-                <hr>
+            </div>
+            {{-- Preenchimento em massa --}}
+            <form method="POST" id="formConfrontoMassa" class="mb-0">
+                <div class="modal-body container pb-0">
+                    <div class="row">
+                        <div class="col-sm">
+                            <button class="btn btn-primary w-100" type="submit"
+                            title="Preenchimento em massa para realizar testes">Preencher até 400 partidas</button>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
             </form>
 
             <form method="POST" id="formConfronto">
-                <div class="modal-body container">
-                    {{-- Mensagem de aviso --}}
-                    <div class="row" id="aviso-ModalConfronto" style="display:none">
-                        <div class="alert alert-danger p-2 text-center w-100" role="alert">
-                            <label class="m-0" id="mensagem-ModalConfronto"></label>
-                        </div>
-                    </div>
+                <div class="modal-body container pt-0">
 
                     {{-- Dados do formulário --}}
                     <div class=row>

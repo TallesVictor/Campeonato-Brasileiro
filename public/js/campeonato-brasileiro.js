@@ -71,6 +71,10 @@ function tabelaBrasileiraoA() {
             }
             $("#bodyBrasileiroA").html(html);
             hideLoading();
+        },
+        error: function(xhr) {
+            erro('home', xhr.responseText);
+            hideLoading();
         }
 
     });
@@ -137,16 +141,18 @@ function formConfrontoMassa() {
                 placarVisitante: 0,
             },
             success: function(data) {
-                // if (data == 'true') {
                 $("#modalConfronto").modal("hide");
                 tabelaBrasileiraoA();
                 erro('ModalConfronto', null);
-                // } else if (data == 'false') {
-                //     erro('ModalConfronto', 'Erro ao salvar no Bando de Dados');
-                // }
             },
             error: function(xhr) {
                 erro('ModalConfronto', xhr.responseText);
+                // Limpar algum erro que possa aparecer pelo número de registros que está sendo criado
+                if (xhr.status == '400') {
+                    $("#modalConfronto").modal("hide");
+                    tabelaBrasileiraoA();
+                    erro('ModalConfronto', null);
+                }
             }
         });
 
@@ -158,7 +164,7 @@ function compararTimes() {
     let timeVisitante = $("#selectVisitante-ModalConfronto").val();
     let msg = "";
     if (timeCasa == timeVisitante) {
-        msg = "Dois times iguais não podem se disputar!";
+        msg = "Dois times iguais não podem disputar!";
     }
     erro('ModalConfronto', msg);
 }

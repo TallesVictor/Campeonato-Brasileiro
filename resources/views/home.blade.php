@@ -18,8 +18,14 @@
                 <button class="btn btn-success w-100" data-toggle="modal" data-target="#modalConfronto">Inserir
                     Confronto</button>
             </div>
-
         </div>
+         {{-- Mensagem de aviso --}}
+         <div class="row" id="aviso-home" style="display:none">
+            <div class="alert alert-danger p-2 text-center w-100" role="alert">
+                <label class="m-0" id="mensagem-home"></label>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-sm">
                 <div class="table-responsive-sm">
