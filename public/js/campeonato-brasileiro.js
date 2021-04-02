@@ -10,6 +10,7 @@ $(document).ready(function() {
 });
 
 function tabelaBrasileiraoA() {
+    loading();
     $.ajax({
         type: "GET",
         url: "/index",
@@ -103,6 +104,7 @@ function formConfronto() {
 
     $("#formConfronto").submit(function(e) {
         e.preventDefault();
+        loading();
         $.ajax({
             type: "POST",
             url: "create",
@@ -110,15 +112,13 @@ function formConfronto() {
             processData: false,
             contentType: false,
             success: function(data) {
-                // if (data == 'true') {
                 $("#modalConfronto").modal("hide");
                 tabelaBrasileiraoA();
                 erro('ModalConfronto', null);
-                // } else {
-                //     erro('ModalConfronto', 'Erro ao salvar no Bando de Dados');
-                // }
+                hideLoading();
             },
             error: function(xhr) {
+                hideLoading();
                 erro('ModalConfronto', xhr.responseText);
             }
         });
@@ -131,6 +131,7 @@ function formConfrontoMassa() {
 
     $("#formConfrontoMassa").submit(function(e) {
         e.preventDefault();
+        loading();
         $.ajax({
             type: "POST",
             url: "createBulk",
@@ -144,8 +145,10 @@ function formConfrontoMassa() {
                 $("#modalConfronto").modal("hide");
                 tabelaBrasileiraoA();
                 erro('ModalConfronto', null);
+                hideLoading();
             },
             error: function(xhr) {
+                hideLoading();
                 erro('ModalConfronto', xhr.responseText);
                 // Limpar algum erro que possa aparecer pelo número de registros que está sendo criado
                 if (xhr.status == '400') {
