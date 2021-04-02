@@ -128,7 +128,7 @@ class Rodadas extends Model
         return null;
     }
    
-    /** Em caso de J=V=E=D=GP=GC */
+    /** Em caso de V=E=D=GP=SG */
     private static function verificarClassificacao()
     {
         $posicaoTimeController = new PosicaoTimeController();
