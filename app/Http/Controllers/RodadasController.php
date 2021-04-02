@@ -14,13 +14,14 @@ class RodadasController extends Controller
 
         $rodadas = $rodadas->create($request);
 
-        if(isset($rodadas)){
+        if (isset($rodadas)) {
             return $rodadas;
-        }else{
+        } else {
             return response('Nenhuma Rodada encontrado', 500);
         }
     }
 
+    /** Criar rodadas em massa*/
     public function createBulk(Request $request)
     {
         $rodadas = new Rodadas();
@@ -29,7 +30,7 @@ class RodadasController extends Controller
             $request->timeVisitante = rand(11, 20);
             $request->placarCasa = rand(0, 5);
             $request->placarVisitante = rand(0, 5);
-            if($rodadas->create($request) != 'true'){
+            if ($rodadas->create($request) != 'true') {
                 return $rodadas->create($request);
             }
         }

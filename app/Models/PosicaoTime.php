@@ -14,6 +14,7 @@ class PosicaoTime extends Model
     protected $fillable = ['id', 'posicao', 'time_id', 'jogos', 'vitorias', 'empate', 'derrota', 'gols_pro', 'gols_contra', 'status', 'created_at', 'updated_at'];
     protected $hidden = ['created_at', 'updated_at'];
 
+    /** Listar a tabela do brasileirão serie A */
     public static function list()
     {
         return DB::select( "SELECT
@@ -46,11 +47,14 @@ class PosicaoTime extends Model
                                 pt.time_id
                             ORDER BY posicao");
     }
+
+    /** Buscar um elemento PosicaoTime */
     public static function search($time)
     {
         return PosicaoTime::find($time);
     }
 
+    /** Fazer verificação da classificação */
     public static function rank()
     {
 
@@ -150,6 +154,7 @@ class PosicaoTime extends Model
         return $cmd;
     }
 
+     /** Alterar um elemento PosicaoTime */
     public static function change(PosicaoTime $posicaoTime)
     {
         return $posicaoTime->save();

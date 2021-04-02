@@ -7,41 +7,48 @@ use Illuminate\Http\Request;
 
 class PosicaoTimeController extends Controller
 {
-    public function rank(){
+    /** Fazer verificação da classificação */
+    public function rank()
+    {
         $posicaoTime = new PosicaoTime();
         $posicaoTime = $posicaoTime->rank();
-        
-        if(isset($posicaoTime)){
+
+        if (isset($posicaoTime)) {
             return $posicaoTime;
-        }else{
+        } else {
+            return response('Nenhum Time encontrado', 500);
+        }
+    }
+
+    /** Listar a tabela do brasileirão serie A */
+    public function list()
+    {
+        $posicaoTime = new PosicaoTime();
+        $posicaoTime = $posicaoTime->list();
+
+        if (isset($posicaoTime)) {
+            return $posicaoTime;
+        } else {
             return response('Nenhum Time encontrado', 500);
         }
     }
     
-    public function list(){
-        $posicaoTime = new PosicaoTime();
-        $posicaoTime = $posicaoTime->list();
-
-        if(isset($posicaoTime)){
-            return $posicaoTime;
-        }else{
-            return response('Nenhum Time encontrado', 500);
-        }
-    }
-
-    public function change(PosicaoTime $posicaoTime){
+    /** Alterar um elemento PosicaoTime */
+    public function change(PosicaoTime $posicaoTime)
+    {
         return $posicaoTime->change($posicaoTime);
     }
 
-    public function search($id){
+    /** Buscar um elemento PosicaoTime */
+    public function search($id)
+    {
         $posicaoTime = new PosicaoTime();
         $posicaoTime = $posicaoTime->search($id);
 
-        if(isset($posicaoTime)){
+        if (isset($posicaoTime)) {
             return $posicaoTime;
-        }else{
+        } else {
             return response('Nenhum Time encontrado', 500);
         }
     }
-
 }

@@ -18,6 +18,7 @@ class Rodadas extends Model
     protected $fillable = ['id', 'time_casa', 'time_fora', 'gols_time_casa', 'gols_time_fora', 'created_at', 'updated_at'];
     protected $hidden = ['created_at', 'updated_at'];
 
+    /** Criar rodadas */
     public function create(Request $request)
     {
         // Validar dados recebidos via AJAX
@@ -126,9 +127,7 @@ class Rodadas extends Model
         }
         return null;
     }
-
-    /** Verificar qual time teve mais vitórias no confronto direto */
-
+   
     /** Em caso de J=V=E=D=GP=GC */
     private static function verificarClassificacao()
     {
@@ -201,6 +200,8 @@ class Rodadas extends Model
             }
         }
     }
+
+     /** Verificar qual time teve mais vitórias no confronto direto */
     private static function confrontoDireto($timePrincipal, $timeSecundario)
     {
         $cmd = "SELECT
