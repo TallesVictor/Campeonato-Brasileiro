@@ -44,25 +44,6 @@
                             </tr>
                         </thead>
                         <tbody id="bodyBrasileiroA">
-                            {{-- @foreach ($times as $collection)
-                                <tr>
-                                    <td> v </td>
-                                    <td class="text-left">
-                                        1º
-                                        <img src="{{ url($collection->logo) }}" class="img-logo"
-                                            alt="{{ $collection->name }}" />
-                                        {{ $collection->name }}
-                                    </td>
-                                    <td>99</td>
-                                    <td>99</td>
-                                    <td>99</td>
-                                    <td>99</td>
-                                    <td>99</td>
-                                    <td>99</td>
-                                    <td>99</td>
-                                    <td>99</td>
-                                </tr>
-                            @endforeach --}}
 
                         </tbody>
                     </table>
