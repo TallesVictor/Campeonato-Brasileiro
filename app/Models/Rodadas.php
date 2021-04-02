@@ -37,8 +37,13 @@ class Rodadas extends Model
             return response()
                 ->json($erro);
         }
+        
         $timeCasa = intval($request->timeCasa);
         $timeVisitante = intval($request->timeVisitante);
+
+        if($timeCasa == $timeVisitante){
+            return response("Dois times iguais não podem disputar!", 400);
+        }
 
         $quantidadeJogos = self::quantidadeJogos($timeCasa);
         $quantidadeJogos .= self::quantidadeJogos(intval($timeVisitante));
@@ -148,12 +153,19 @@ class Rodadas extends Model
                         AND pt2.id != pt.id
                 )";
         $cmd = DB::select($cmd);
-        if (count($cmd) > 0) {
 
-            for ($i = 1; $i < count($cmd); $i += 2) {
-                $timeAnt = $cmd[$i - 1]->time_id;
-                $timeProx = $cmd[$i]->time_id;
-                echo "$timeAnt - $timeProx";
+        if (count($cmd) > 0) {
+            
+            for ($i = 0; $i < count($cmd); $i++) {
+                // echo "\n". $i+1 ." - ".count($cmd);
+                if($i+1 == count($cmd)){
+                    break;
+                }else{
+                    $timeAnt = $cmd[$i]->time_id;
+                    $timeProx = $cmd[$i+1]->time_id;
+                }
+                
+
                 $confrontoDireto = self::confrontoDireto($timeAnt,  $timeProx);
 
                 // Se confronto for diferente de 0, quer dizer que não tem confronto direto
@@ -170,12 +182,13 @@ class Rodadas extends Model
                         $posicaoAux = $timeMaisVitoria->posicao;
                         $timeMaisVitoria->posicao = $timeMenosVitoria->posicao;
                         $timeMenosVitoria->posicao = $posicaoAux;
-
+                        
                         // Alterar status
                         $timeMaisVitoria->status = 1;
                         $timeMenosVitoria->status = -1;
                         $timeMaisVitoria->updated_at =  date('Y-m-d H:m:s');
                         $timeMenosVitoria->updated_at =  date('Y-m-d H:m:s');
+
                         if ($posicaoTimeController->change($timeMaisVitoria) != 1) {
                             return "Erro para salvar alteração do time_id: $timeMaisVitoria->time_id";
                         }
