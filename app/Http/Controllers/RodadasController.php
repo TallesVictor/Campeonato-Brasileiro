@@ -12,7 +12,13 @@ class RodadasController extends Controller
     {
         $rodadas = new Rodadas();
 
-        return $rodadas->create($request);
+        $rodadas = $rodadas->create($request);
+
+        if(isset($rodadas)){
+            return $rodadas;
+        }else{
+            return response('Nenhuma Rodada encontrado', 500);
+        }
     }
 
     public function createBulk(Request $request)

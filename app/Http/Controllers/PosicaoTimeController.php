@@ -9,12 +9,24 @@ class PosicaoTimeController extends Controller
 {
     public function rank(){
         $posicaoTime = new PosicaoTime();
-        return $posicaoTime->rank();
+        $posicaoTime = $posicaoTime->rank();
+        
+        if(isset($posicaoTime)){
+            return $posicaoTime;
+        }else{
+            return response('Nenhum Time encontrado', 500);
+        }
     }
     
     public function list(){
         $posicaoTime = new PosicaoTime();
-        return $posicaoTime->list();
+        $posicaoTime = $posicaoTime->list();
+
+        if(isset($posicaoTime)){
+            return $posicaoTime;
+        }else{
+            return response('Nenhum Time encontrado', 500);
+        }
     }
 
     public function change(PosicaoTime $posicaoTime){
@@ -23,7 +35,13 @@ class PosicaoTimeController extends Controller
 
     public function search($id){
         $posicaoTime = new PosicaoTime();
-        return $posicaoTime->search($id);
+        $posicaoTime = $posicaoTime->search($id);
+
+        if(isset($posicaoTime)){
+            return $posicaoTime;
+        }else{
+            return response('Nenhum Time encontrado', 500);
+        }
     }
 
 }

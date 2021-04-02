@@ -11,15 +11,27 @@ class TimesController extends Controller
 
     public function show(){
         $times = new Times();
-        return $times->show();
+        $times = $times->show();
+
+        if(isset($times)){
+            return $times;
+        }else{
+            return response('Nenhum Time encontrado', 500);
+        }
     }
 
     public function search($id){
         $times = new Times();
-        return $times->search($id);
+        $times =  $times->search($id);
+        if(isset($times)){
+            return $times;
+        }else{
+            return response('Nenhum Time encontrado', 500);
+        }
     }
 
     public function change(Times $times){
+        
         return $times->change($times);
     }
 
