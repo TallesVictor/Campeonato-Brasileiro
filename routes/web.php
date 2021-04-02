@@ -19,9 +19,10 @@ use Illuminate\Support\Facades\Route;
 #  VIEW
 Route::view('/', 'home');
 
-#  TIMES
-// Route::get('/index', [TimesController::class, 'index']);
+#POSIÇÃO TIME
 Route::get('/index', [PosicaoTimeController::class, 'list']);
+
+#  TIMES
 Route::get('/show', [TimesController::class, 'show']);
 
 #  RODADAS
