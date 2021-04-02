@@ -8,11 +8,11 @@ function hideLoading() {
     $(".preloader").removeClass('d-flex');
 }
 
-function erro(modal, msg) {
-    $("#aviso-" + modal).hide();
+function erro(id, msg) {
+    $("#aviso-" + id).hide();
     if (msg) {
-        $("#mensagem-" + modal).html(msg);
-        $("#aviso-" + modal).show();
+        $("#mensagem-" + id).html(msg);
+        $("#aviso-" + id).show();
     }
 
 }
